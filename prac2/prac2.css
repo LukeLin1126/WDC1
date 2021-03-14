@@ -1,0 +1,217 @@
+/* task 2-2 style*/
+
+.prac2_2 h1 h2 {
+    font-family: sans-serif;
+}
+
+.prac2_2 h2 {
+    text-align: left;
+}
+
+.prac2_2 p {
+    font-family: serif;
+}
+
+.prac2_2 a {
+    color: darkgreen;
+}
+
+.prac2_2 del {
+    color: grey;
+}
+
+.prac2_2 mark {
+    color: darkblue;
+    background: pink;
+}
+
+.prac2_2 pre {
+    font-family: monospace;
+}
+
+
+
+
+/* task 2-3 style*/
+
+.task2_3 h3 {
+    color: rgba(0, 0, 139, 0.8);
+}
+
+.transparent-text {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* task 2-4 style*/
+
+.task2_4 {
+    background-image: url("cross.png");
+    background-color:  #DCF5F5;
+    background-position: left top;
+    background-repeat: repeat;
+
+}
+
+/* task 2-5 style*/
+
+.task2_5 #context {
+    background-color: white;
+}
+
+.task2_5 .blue {
+    color: blue;
+}
+
+.task2_5 .fancy {
+    font-family: cursive;
+}
+
+/* task 2-6 style*/
+
+
+.task2_6 #context {
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid darkgrey;
+}
+
+.task2_6 .red-border {
+    border: #ff0000 1px solid;
+
+}
+
+.task2_6 hr {
+    border: 1px solid darkgrey;
+}
+
+.task2_6 .red-outline {
+    outline: red 1px solid;
+}
+
+.task2_6 .div_1 {
+    border: red solid 1px;
+}
+
+.task2_6 .div_2 {
+    border: blue solid 1px;
+}
+
+.task2_6 .div_3 {
+    border: solid red 1px;
+    border-bottom : none;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.task2_6 .div_4 {
+    border: blue solid 1px;
+    border-radius: 0px 0px 8px 8px;
+}
+
+/* task 2-7 style*/
+
+.task2_7 #context {
+    background-color: white;
+    border: 1px darkgrey solid;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.task2_7 .div_1_outer {
+    text-align: right;
+    background-color: blue;
+    border: 1px red solid;
+}
+
+.task2_7 .div_1_inner {
+    margin: 10px 20px;
+    padding: 12px;
+    background-color: yellow;
+    border: 1px red solid;
+    width: 674px;
+    height: 174px;
+}
+
+.task2_7 .div_2_outer {
+    margin-top: 20px;
+    text-align: right;
+    background-color: blue;
+    border: 1px red solid;
+}
+
+.task2_7 .div_2_inner {
+    background-color: yellow;
+    border: 1px red solid;
+    padding: 12px;
+    width: 374px;
+    height: 374px;
+    margin: auto;
+}
+
+
+/* task 2-8 style*/
+.task2_8 #context {
+    background-color: white;
+    border: 1px darkgrey solid;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.task2_8 h1,h2,h3,h4,h5,h6 {
+    font-family: Raleway, sans-serif;
+}
+
+.task2_8 p {
+    font-family: Noto Serif, serif;
+}
+
+.task2_8 blockquote {
+    font-family: Raleway, serif;
+    color: dimgrey;
+    line-height: 1.5;
+    word-spacing: 0.2em;
+    text-align: justify;
+
+}
+
+.task2_8 h4 {
+    font-style: italic;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+.task2_8 .icons {
+    margin: 0 auto;
+    padding: inherit;
+    color: #BFCFD4;
+    display: flex;
+    justify-content: center;
+}
+
+/* task 2-9 style*/
+
+.task2_9 .context {
+    background-color: white;
+    border: 1px darkgrey solid;
+    border-radius: 8px;
+    padding: 12px;
+}
+.task2_9 .list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: darkgrey;
+    color: white;
+}
+
+.task2_9 .list>li {
+    float: left;
+    padding: 20px;
+}
+
+.task2_9 .list>li:hover {
+    background-color: white;
+    color: darkgrey;
+    text-shadow: 1px 1px lightgrey;
+}
+
