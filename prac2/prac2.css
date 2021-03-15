@@ -189,6 +189,10 @@
 
 /* task 2-9 style*/
 
+.task2_9 body {
+    font-family: Noto Serif, serif;
+}
+
 .task2_9 .context {
     background-color: white;
     border: 1px darkgrey solid;
@@ -202,6 +206,7 @@
     overflow: hidden;
     background-color: darkgrey;
     color: white;
+    font-family: Raleway, sans-serif;
 }
 
 .task2_9 .list>li {
@@ -214,4 +219,18 @@
     color: darkgrey;
     text-shadow: 1px 1px lightgrey;
 }
+
+.task2_9 .list a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.task2_9 .list a:hover {
+    background-color: white;
+    color: darkgrey;
+    text-shadow: 1px 1px lightgrey;
+}
+
 
