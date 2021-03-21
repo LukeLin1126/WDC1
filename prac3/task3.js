@@ -175,11 +175,17 @@ $(function () {
 
             let children = document.getElementById("posts").children;
 
+            console.log(range_selector.val());
+
             for (let i = 0; i < children.length; i++) {
+
                 if (i >= range_selector.val() * 2) {
+
                     children[i].style.display = "none";
+
                 } else {
-                    children[i].style.display = "block";
+
+                    children[i].style.display = "";
 
                 }
             }
@@ -232,9 +238,10 @@ $(function () {
 
         let background_color_input = $("#background_color");
 
-        background_color_input.on("focusout", function () {
+        background_color_input.on("change keydown paste input", () => {
 
-            $("html").css("background-color",background_color_input.val());
+            $("body").css("background-color", background_color_input.val());
+
 
         });
 

@@ -4,6 +4,6 @@ $(function (){
 
     button.addEventListener("click",function () {
         text.innerText = Date();
-    })
+    });
 });
 
