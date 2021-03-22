@@ -169,23 +169,23 @@ $(function () {
         });
 
         // task 3-6
-        let range_selector = $("#range_selector");
+        let range_selector = document.querySelector("[name='visible']");
 
-        range_selector.on("mousemove", function () {
+        range_selector.addEventListener("input",  () => {
 
             let children = document.getElementById("posts").children;
 
-            console.log(range_selector.val());
+            // console.log(range_selector.val());
 
             for (let i = 0; i < children.length; i++) {
 
-                if (i >= range_selector.val() * 2) {
+                if (i >= range_selector.value * 2) {
 
                     children[i].style.display = "none";
 
                 } else {
 
-                    children[i].style.display = "";
+                    children[i].style.display = "block";
 
                 }
             }
