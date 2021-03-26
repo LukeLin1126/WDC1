@@ -1,0 +1,14 @@
+Server: nginx/1.2.1
+Date: Fri, 26 Mar 2021 13:51:58 GMT
+Content-Type: text/html
+Content-Length: 66378
+Connection: keep-alive
+Accept-Ranges: bytes
+Cache-Control: max-age=21600
+Expires: Fri, 26 Mar 2021 19:51:58 GMT
+Vary: Accept-Encoding
+X-UA-Compatible: IE=edge
+Accept-Ranges: bytes
+X-Varnish: 2929216306
+Age: 0
+Via: 1.1 varnish
