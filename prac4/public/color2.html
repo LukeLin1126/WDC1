@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+
+            // task 4-2
+            let color_trigger = () => {
+
+                let xhttp = new XMLHttpRequest();
+
+                let parser = new DOMParser();
+
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
+
+                        // https://www.w3schools.com/xml/xml_parser.asp
+
+                        let xmlDoc = parser.parseFromString(this.responseText, 'text/html');
+
+                        let color = xmlDoc.querySelector("h1").innerText;
+
+                        $('h1')
+                            .text(`${color}`)
+                            .css('color',color);
+
+                    }
+                };
+
+                xhttp.open("GET", "/color.html", true);
+                xhttp.send();
+
+            };
+
+            $('button').on('click', function () {
+
+                color_trigger();
+
+            });
+
+
+            color_trigger();
+        });
+
+    </script>
+</head>
+<body>
+
+<h1></h1>
+<button>trigger</button>
+
+</body>
+</html>

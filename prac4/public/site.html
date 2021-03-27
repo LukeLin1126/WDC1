@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+    <style>
+
+        body {
+            text-align: center;
+
+        }
+        button {
+            margin: 20px;
+        }
+
+        #content {
+            margin: 20px;
+        }
+
+    </style>
+
+    <script>
+        // context
+
+        let contact_callback = ()=>{
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
+
+                    $('#content').html(this.responseText);
+
+                }
+            };
+
+            xhttp.open("GET", "/contact.ajax", true);
+            xhttp.send();
+        }
+
+        let search_callback = ()=>{
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
+
+                    $('#content').html(this.responseText);
+
+                }
+            };
+
+            xhttp.open("GET", "/search.ajax", true);
+            xhttp.send();
+        }
+
+
+        let about_callback = ()=>{
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
+
+                    $('#content').html(this.responseText);
+
+                }
+            };
+
+            xhttp.open("GET", "/about.ajax", true);
+            xhttp.send();
+        }
+
+
+
+
+        window.onload = () => {
+            $("#contact").on('click', function () {
+
+                contact_callback();
+
+            });
+
+            $("#search").on('click', function () {
+
+                search_callback();
+
+            });
+
+
+            $("#about").on('click', function () {
+
+                about_callback();
+
+            });
+        }
+
+
+    </script>
+</head>
+<body>
+
+<h1>My AJAX Site</h1>
+<button id="contact">contact</button>
+<button id="search">search</button>
+<button id="about">about</button>
+<main>
+    <div id="content"></div>
+</main>
+</body>
+</html>

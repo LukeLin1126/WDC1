@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        // handler for /log.json
+        (() => {
+
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
+
+                    let parse = JSON.parse(this.responseText);
+
+                    for (const parseElement of parse) {
+
+                        $("ul").append($('<li>').text(parseElement));
+
+                    }
+
+                }
+            };
+
+            xhttp.open("GET", "/log.json", true);
+            xhttp.send();
+
+        })();
+
+        // handler for /log-ro.json
+
+        let fetchLog = () => {
+            let xhttp = new XMLHttpRequest();
+
+            $("ul").children().remove();
+
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
+
+                    let parse = JSON.parse(this.responseText);
+
+
+                    for (const parseElement of parse) {
+
+                        $("ul").append($('<li>').text(parseElement));
+
+                    }
+
+                }
+            };
+
+            xhttp.open("GET", "/log-ro.json", true);
+            xhttp.send();
+
+        };
+
+        window.onload = function () {
+            setInterval(fetchLog, 10 * 1000);
+        }
+
+    </script>
+</head>
+<body>
+
+<ul>
+
+</ul>
+
+</body>
+</html>
