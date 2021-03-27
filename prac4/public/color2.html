@@ -12,16 +12,16 @@
 
                 let xhttp = new XMLHttpRequest();
 
-                let parser = new DOMParser();
+                // let parser = new DOMParser();
 
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
 
                         // https://www.w3schools.com/xml/xml_parser.asp
 
-                        let xmlDoc = parser.parseFromString(this.responseText, 'text/html');
+                        // let xmlDoc = parser.parseFromString(this.responseText, 'text/html');
 
-                        let color = xmlDoc.querySelector("h1").innerText;
+                        let color = this.responseText;
 
                         $('h1')
                             .text(`${color}`)
@@ -30,7 +30,7 @@
                     }
                 };
 
-                xhttp.open("GET", "/color.html", true);
+                xhttp.open("GET", "/color.txt", true);
                 xhttp.send();
 
             };

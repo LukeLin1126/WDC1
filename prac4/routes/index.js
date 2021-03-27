@@ -157,6 +157,33 @@ router.get('/', function(req, res, next) {
 
 })();
 
+
+// task 4-2
+
+(() => {
+
+  let count = 0;
+
+
+  const color_array = ['red', 'yellow', 'green', 'blue'];
+
+  router.get('/color.txt', function (req, res, next) {
+
+
+
+    if (count === color_array.length) {
+      count = 0;
+    }
+
+    res.send(color_array[count]);
+
+    count ++;
+
+
+  });
+
+})();
+
 // task 4-3
 
 (() => {
