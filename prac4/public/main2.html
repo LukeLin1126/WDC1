@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+        #accept {
+            display: none;
+        }
+    </style>
+
+    <script>
+        $(function () {
+
+            let req_content_callback = () => {
+
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () {
+
+                    // readyState = 2 is HEADERS_RECEIVED
+                    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+
+                    if (this.readyState === 2 && this.status === 403) {
+
+                        $('#accept').show();
+
+                    }
+
+
+                    if (this.readyState === 4 && this.status === 200) {
+
+                        $('#accept').hide();
+                        $('body').append(this.responseText);
+
+                    }
+
+
+                };
+
+                xhttp.open("GET", "/content.ajax", true);
+                xhttp.send();
+
+            };
+
+
+            let req_accept_callback = () => {
+
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+
+                        $('#accept').show();
+
+                    }
+                };
+
+                xhttp.open("GET", "/accept", true);
+                xhttp.send();
+
+
+            };
+
+            $("#accept_btn").on('click', () => {
+                req_accept_callback();
+                req_content_callback();
+            });
+
+
+            req_content_callback();
+
+
+        });
+    </script>
+</head>
+<body>
+<h1>level 1 heading</h1>
+
+<div id="accept">
+    <p>accept the terms and conditions of the website</p>
+    <button id="accept_btn">accept</button>
+</div>
+</body>
+</html>
