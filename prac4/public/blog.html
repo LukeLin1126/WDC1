@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+        .timestamp {
+            color: grey;
+        }
+
+    </style>
+    <script>
+        $(function () {
+
+
+            let ajax_param_num = 4;
+            let ajax_param_first = 0;
+
+            // task 4-2
+            let post_trigger = () => {
+
+                $.ajax({
+                    url: "/posts.json",
+                    data: jQuery.param({ num: ajax_param_num, first : ajax_param_first}) ,
+                    async: true,
+                    success: function(result){
+
+                        // let parse = JSON.parse(result);
+
+                        for (const parseElement of result) {
+
+                            $("body").append(
+                                `<div class="post">
+                                    <p class="timestamp">${new Date(parseElement.time).toString()}</p>
+                                    <p class="author"><a href="${parseElement.authorWeb}" alt="">${parseElement.author}</a></p>
+                                    ${parseElement.content}
+                                </div>`
+                            );
+
+                        }
+
+
+                    }});
+
+
+            };
+
+            $("#btn").on("click", function () {
+
+                ajax_param_num += 4;
+                ajax_param_first += 4;
+                post_trigger();
+
+            });
+
+            post_trigger();
+
+        });
+    </script>
+
+</head>
+<body>
+
+
+<h1>blog.html</h1>
+<button id="btn">load more blog posts</button>
+
+
+
+</body>
+</html>
