@@ -563,7 +563,7 @@ router.get('/', function(req, res, next) {
     }
 
 
-    for (let i = first_post; i < max_post && i < posts.length; i++) {
+    for (let i = parseInt(first_post); i < max_post && i < posts.length; i++) {
       processed_posts.push(posts[i]);
     }
 

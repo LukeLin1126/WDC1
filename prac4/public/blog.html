@@ -33,7 +33,7 @@
 
                             $("body").append(
                                 `<div class="post">
-                                    <p class="timestamp">${new Date(parseElement.time).toString()}</p>
+                                    <p class="timestamp">${new Date(parseElement.time * 1000).toString()}</p>
                                     <p class="author"><a href="${parseElement.authorWeb}" alt="">${parseElement.author}</a></p>
                                     ${parseElement.content}
                                 </div>`
