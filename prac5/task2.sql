@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.51, for osx10.16 (x86_64)
 --
--- Host: bt-02-test.in.llycloud.com    Database: enrolment
+-- Host: bt-02-test.in.llycloud.com    Database: 
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.15-MariaDB-log
 
@@ -14,6 +14,14 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `enrolment`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `enrolment` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `enrolment`;
 
 --
 -- Table structure for table `Enrolments`
@@ -101,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-06 15:43:54
+-- Dump completed on 2021-04-06 15:52:07
