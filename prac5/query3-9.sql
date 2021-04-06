@@ -3,3 +3,4 @@
 #      Subjects as sb,
 #      Students as stu
 # where
+select * from Enrolments;
