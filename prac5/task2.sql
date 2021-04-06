@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.51, for osx10.16 (x86_64)
 --
--- Host: bt-02-test.in.llycloud.com    Database: 
+-- Host: bt-02-test.in.llycloud.com    Database:
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.15-MariaDB-log
 
@@ -31,13 +31,9 @@ DROP TABLE IF EXISTS `Enrolments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Enrolments` (
-  `student_id` char(30) NOT NULL,
-  `subject_code` char(30) NOT NULL,
-  `mark` int(11) DEFAULT NULL,
-  KEY `Enrolments_Subjects_subject_code_fk` (`subject_code`),
-  KEY `Enrolments_Students_student_id_fk` (`student_id`),
-  CONSTRAINT `Enrolments_Students_student_id_fk` FOREIGN KEY (`student_id`) REFERENCES `Students` (`student_id`),
-  CONSTRAINT `Enrolments_Subjects_subject_code_fk` FOREIGN KEY (`subject_code`) REFERENCES `Subjects` (`subject_code`)
+                              `student_id` char(30) NOT NULL,
+                              `subject_code` char(50) DEFAULT NULL,
+                              `mark` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -47,7 +43,7 @@ CREATE TABLE `Enrolments` (
 
 LOCK TABLES `Enrolments` WRITE;
 /*!40000 ALTER TABLE `Enrolments` DISABLE KEYS */;
-INSERT INTO `Enrolments` VALUES ('a1111111','COMP SCI 1102',62),('a1111111','COMP SCI 2000',80),('a1111112','COMP SCI 1102',55),('a1111112','COMP SCI 2207',55),('a1111113','PHIL 2039',50),('a1111113','COMP SCI 1102',50),('a1111114','COMP SCI 2207',67),('a1111114','COMP SCI 2000',49);
+INSERT INTO `Enrolments` VALUES ('a1111111','COMP SCI 1102',62),('a1111111','COMP SCI 2000	',80),('a1111112','COMP SCI 1102',55),('a1111112','COMP SCI 2207',55),('a1111113','PHIL 2039',65),('a1111113','COMP SCI 1102',46),('a1111114','COMP SCI 2207',67),('a1111114','COMP SCI 2000',49);
 /*!40000 ALTER TABLE `Enrolments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,12 +55,12 @@ DROP TABLE IF EXISTS `Students`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Students` (
-  `student_id` char(30) NOT NULL,
-  `given_name` char(30) DEFAULT NULL,
-  `family_name` char(30) DEFAULT NULL,
-  `program` char(30) DEFAULT NULL,
-  PRIMARY KEY (`student_id`),
-  UNIQUE KEY `Students_student_id_uindex` (`student_id`)
+                            `student_id` char(30) NOT NULL,
+                            `given_name` char(30) DEFAULT NULL,
+                            `family_name` char(30) DEFAULT NULL,
+                            `program` char(30) DEFAULT NULL,
+                            PRIMARY KEY (`student_id`),
+                            UNIQUE KEY `Students_student_id_uindex` (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -86,11 +82,11 @@ DROP TABLE IF EXISTS `Subjects`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Subjects` (
-  `subject_code` char(30) NOT NULL,
-  `subject` char(100) DEFAULT NULL,
-  `faculty` char(10) DEFAULT NULL,
-  PRIMARY KEY (`subject_code`),
-  UNIQUE KEY `Subjects_subject_code_uindex` (`subject_code`)
+                            `subject_code` char(30) NOT NULL,
+                            `subject` char(100) DEFAULT NULL,
+                            `faculty` char(10) DEFAULT NULL,
+                            PRIMARY KEY (`subject_code`),
+                            UNIQUE KEY `Subjects_subject_code_uindex` (`subject_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -113,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-06 16:31:52
+-- Dump completed on 2021-04-06 15:52:07
