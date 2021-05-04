@@ -42,7 +42,7 @@
         <button class="pure-button" style="float:right;" onclick="vueinst.show_ad = false;">close</button>
         <img v-bind:src="special.url" :alt="special.name" onclick="vueinst.special=SPECIALS[Math.floor((Math.random() * 3))];" />
         <h3>{{ special.name }}</h3>
-        <p> {{ special.price}}</p>
+        <p>{{ special.price}}</p>
     </div>
 
 
@@ -88,12 +88,14 @@
 
             <hr />
 
-            <div id="stores" v-for="item in s_arr">
-                <img :src="item.img" alt="A picture of the storefront" />
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.address }}</p>
-                <span> {{item.counter}} people have been here</span>
-                <button @click="item.counter ++">I've been here</button>
+            <div id="stores"  v-for="item in s_arr">
+                <div class="store">
+                    <img :src="item.img" alt="A picture of the storefront" />
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.address }}</p>
+                    <span> {{item.counter}} people have been here</span>
+                    <button @click="item.counter ++">I've been here</button>
+                </div>
             </div>
 
         </aside>
