@@ -110,7 +110,7 @@ router.get('/', function(req, res, next) {
 
     const id = req.params.id;
     if (id && id < userArray.length) {
-      res.send(userArray[id]);
+      res.send(userArray[userArray.length - id]);
     } else {
       res.send(userArray);
     }
