@@ -81,7 +81,7 @@ router.get('/', function(req, res, next) {
   let userArray = [];
 
   router.post('/users/addpost', function (req, res, next) {
-    userArray.push(req.body);
+    userArray.unshift(req.body);
     res.send();
   });
 
@@ -113,7 +113,7 @@ router.get('/', function(req, res, next) {
 
     const id = req.params.id;
     if (id && id < userArray.length) {
-      res.send(userArray[id]);
+      res.send(userArray[userArray.length - id - 1]);
     } else {
       res.send(userArray);
     }
