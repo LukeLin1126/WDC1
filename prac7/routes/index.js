@@ -6,8 +6,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
-// task 1.1
 (()=>{
   router.get('/brew',function (req, res, next) {
 
@@ -23,7 +21,6 @@ router.get('/', function(req, res, next) {
 
   });
 })();
-
 
 // task 1.2
 (()=>{
