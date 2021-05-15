@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -18,6 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({secret: "Shh, its a secret!"}));
+
 
 (()=>{
 
@@ -47,6 +52,18 @@ app.use(express.static(path.join(__dirname, 'public')));
       res.status(412).send();
     } else {
       next();
+    }
+
+  });
+
+  // task 3.3
+
+  app.all('/users*', function (req, res, next) {
+
+    if (req.session.tcaccept) {
+      next();
+    } else {
+      res.status(403).send();
     }
 
   });

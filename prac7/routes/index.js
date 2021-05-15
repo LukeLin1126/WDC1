@@ -120,6 +120,52 @@ router.get('/', function(req, res, next) {
 
 })();
 
+let cookieParser = require('cookie-parser');
+
+
+(() => {
+
+  // task 3.1
+
+  router.get('/cookie', function (req, res, next) {
+    // console.log(req.cookies.Cookie_1);
+
+    if (!req.cookies.task3_1) {
+      res.cookie('task3_1', '1', {
+        overwrite: true
+      }).send();
+    } else {
+      res.clearCookie("task3_1");
+
+      res.cookie('task3_1',(parseInt(req.cookies.task3_1) + 1).toString(), {
+        overwrite: true
+      });
+      res.send();
+    }
+
+  });
+
+
+
+  // task 3.2
+
+
+  router.post('/tcaccept', function (req, res, next) {
+    req.session.tcaccept = true;
+    res.send('It works');
+  });
+
+
+  router.get('/users/accepted', function (req, res, next) {
+    if (req.session.tcaccept) {
+      res.send('It works');
+    } else {
+      res.status(403).send();
+    }
+  });
+
+})();
+
 
 
 module.exports = router;

@@ -42,10 +42,10 @@
 
         </div>
 
-        <div id="tcs" style="display: none;">
+        <div id="tcs" v-if="TOC_trigger">
             <h2>Terms and Conditions</h2>
             <p>All your base are belong to us.</p>
-            <button class="pure-button button-success">Accept</button>
+            <button class="pure-button button-success" @click="accept_TOC">Accept</button>
         </div>
 
     </div>
@@ -59,7 +59,8 @@
               return{
                   content: '',
                   title: '',
-                  result : {}
+                  result : {},
+                  TOC_trigger : false
               }
           },
           methods:{
@@ -71,13 +72,27 @@
                       headers: {
                           'Content-Type': 'application/json',
                       }
+                  }).catch(function (error) {
+                      console.log(error);
+                      vueinst.TOC_trigger = true;
                   });
               },
               show_all_posts: function () {
                   axios.get("/users/getposts")
                       .then((response) => {
                           this.result = response.data;
-                      });
+                      })
+                      .catch(function (error) {
+                          vueinst.TOC_trigger = true;
+                      })
+                  ;
+              },
+              accept_TOC: function () {
+                  axios.post("/tcaccept")
+                      .then(() => {
+                          this.TOC_trigger = false;
+                      })
+                  ;
               }
           }
       })
