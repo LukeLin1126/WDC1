@@ -67,6 +67,10 @@
                   axios.post("/users/addpost", {
                       title: this.title,
                       content: this.content,
+                  },{
+                      headers: {
+                          'Content-Type': 'application/json',
+                      }
                   });
               },
               show_all_posts: function () {

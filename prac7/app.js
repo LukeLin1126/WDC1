@@ -19,6 +19,41 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+(()=>{
+
+
+  // task 2.1
+
+  let n = 1;
+
+  app.all('/*', function (req, res, next) {
+    // eslint-disable-next-line no-console
+    console.log(`Received ${n} requests`);
+    n++;
+    next();
+  });
+
+  // task 2.2
+
+  app.post('/users*', function (req, res, next) {
+    // eslint-disable-next-line no-console
+    console.log('POST from a user');
+    next();
+  });
+
+  app.post('/users*', function (req, res, next) {
+
+    if (req.get('Content-Type') !== "application/json") {
+      res.status(412).send();
+    } else {
+      next();
+    }
+
+  });
+
+
+})();
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
