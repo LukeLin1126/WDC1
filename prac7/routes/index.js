@@ -22,9 +22,6 @@ router.get('/', function(req, res, next) {
   });
 })();
 
-<<<<<<< Updated upstream
-=======
-
 // task 1.2
 (()=>{
 
@@ -121,5 +118,4 @@ router.get('/', function(req, res, next) {
 
 })();
 
->>>>>>> Stashed changes
 module.exports = router;
