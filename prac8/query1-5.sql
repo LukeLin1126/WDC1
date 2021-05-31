@@ -1,4 +1,4 @@
-select sum(length)
+select sum(length) as minutes
 from film
 where film_id IN (
     select film_id
@@ -7,7 +7,7 @@ where film_id IN (
         select actor_id
         from actor
         where CONCAT(first_name, ' ', last_name) = 'ANGELA WITHERSPOON'
-    ) and film_id <= 500
+    )
 );
 
 
