@@ -8,7 +8,7 @@ docker run -d -p 3000:3000 bkimminich/juice-shop
 
 ## access dashboard 
 
-http://localhost/#/score-board
+http://localhost:3000/#/score-board
 
 ## doc
 
