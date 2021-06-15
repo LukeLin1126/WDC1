@@ -11,14 +11,3 @@ where film_id IN (
     )
 )
 ;
-
-
-# select SUM(length)
-# from film
-#          inner join film_actor fa on film.film_id = fa.film_id
-#          inner join actor a on fa.actor_id = a.actor_id
-# where CONCAT(a.first_name,' ',a.last_name) = 'ANGELA WITHERSPOON'
-# ;
-
-
-
