@@ -8,5 +8,6 @@
     <orderEntry type="library" name="purecss" level="application" />
     <orderEntry type="library" name="vue" level="application" />
     <orderEntry type="library" name="axios" level="application" />
+    <orderEntry type="library" name="element-ui" level="application" />
   </component>
 </module>

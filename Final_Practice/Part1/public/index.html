@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Search</title>
+<!--    customized css -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+<!--    Axios and Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<!--    Element UI-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.15.2/index.min.js" integrity="sha512-uSWA9edv4Suj91akT6cCeYh9uEcQtQkFCu7y++nf9ADwO3kBAdTcmQwYka7eyNItpqdzjLmp3r37MnXpLqJusg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.15.2/theme-chalk/index.min.css" integrity="sha512-7j0xq+2GMPtO/l8eUz2t0raRmZOqQ0HjM+Qojori84/HQryoRM9QD/8icsGYn3GcTF05kojc9fmDn9N1886iKw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="//unpkg.com/element-ui/lib/umd/locale/en.js"></script>
+    <script>
+        ELEMENT.locale(ELEMENT.lang.en)
+    </script>
+
+    <!--    functional js -->
+    <script src="javascripts/index.js" defer></script>
+
+</head>
+<body>
+<div id="vue_selector" class="app-container">
+    <div class="filter-container">
+        <el-input v-model="listQuery.size" placeholder="size" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"></el-input>
+        <el-date-picker
+                v-model="listQuery.date"
+                type="datetime"
+                placeholder="Select date and time">
+        </el-date-picker>
+        <el-input v-model="listQuery.rating" placeholder="rating" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"></el-input>
+        <el-input v-model="listQuery.facilities" placeholder="facilities" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"></el-input>
+
+        <el-button class="filter-item" type="primary" @click="handleFilter" style="margin-left: 10px;">
+            Search
+        </el-button>
+    </div>
+
+    <el-table
+            :key="tableKey"
+            v-loading="listLoading"
+            :data="myData"
+            border
+            fit
+            highlight-current-row
+            style="width: 100%;"
+    >
+        <el-table-column label="Room ID" prop="id" sortable="custom" align="center" width="80">
+            <template slot-scope="{row}">
+                <span>{{ row.room_id }}</span>
+            </template>
+        </el-table-column>
+
+        <el-table-column label="Room size" prop="size" sortable="custom" align="center" width="80">
+            <template slot-scope="{row}">
+                <span>{{ row.size }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="Room name" prop="size" sortable="custom" align="center" width="80">
+            <template slot-scope="{row}">
+                <span>{{ row.name }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="Room facilities" prop="size" sortable="custom" align="center" width="200">
+            <template slot-scope="{row}">
+                <span>{{ row.facilities }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="Room description" prop="size" sortable="custom" align="center" min-width="80">
+            <template slot-scope="{row}">
+                <span>{{ row.description }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="Room street_address" prop="size" sortable="custom" align="center" width="200">
+            <template slot-scope="{row}">
+                <span>{{ row.street_address }}</span>
+            </template>
+        </el-table-column>
+        <el-table-column label="Room booked_by" prop="size" sortable="custom" align="center" width="150">
+            <template slot-scope="{row}">
+                <span>{{ row.booked_by }}</span>
+            </template>
+        </el-table-column>
+    </el-table>
+</div>
+
+
+
+</body>
+</html>
