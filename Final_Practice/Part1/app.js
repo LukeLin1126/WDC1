@@ -9,9 +9,10 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-
+// import mysql nodejs
 let mysql = require('mysql');
 
+// create connection Pool
 let dbConnectionPool = mysql.createPool({
   // host: 'localhost',
   host: 'bt-02-test.in.llycloud.com',
@@ -20,9 +21,10 @@ let dbConnectionPool = mysql.createPool({
   port: 3306,
   database : 'wdc-final-prac'
 });
-
-app.use(function (req, res, next) {
+// inject pool into express request : req -->
+app.use(function (req, res,next) {
   req.pool = dbConnectionPool;
+  // middleware
   next();
 });
 
