@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 let vueinst = new Vue({
     el : '#vue_selector',
     data(){
@@ -16,27 +17,39 @@ let vueinst = new Vue({
             }],
             listQuery: {
                 facilities: '',
-                size : '',
-                rating :'',
-                date : ''
-            }
+                size: '',
+                rating: '',
+                date: ''
+            },
+            flag: 'true',
+            searchOptions: [{
+                value: 'false',
+                label: 'Or Search'
+            },{
+                value: 'true',
+                label: 'And Search'
+            }]
 
-        }
+        };
     },created(){
         this.getList();
     }
     ,methods: {
         fetchRoomList(){
-            return axios.post('/search',{
+            // eslint-disable-next-line no-undef
+            return axios.post('/search', {
                 facilities: this.listQuery.facilities,
-                size : this.listQuery.size,
-                rating : this.listQuery.rating,
-                date : this.listQuery.date
-            },{
+                size: this.listQuery.size,
+                rating: this.listQuery.rating,
+                date: this.listQuery.date
+            }, {
                 headers: {
                     'content-type': 'application/json',
+                },
+                params: {
+                    flag: this.flag
                 }
-            })
+            });
         },
         getList(){
             this.listLoading = true;
@@ -46,7 +59,7 @@ let vueinst = new Vue({
                 setTimeout(() => {
                     this.listLoading = false;
                 }, 1000);
-            })
+            });
         }
     }
 });

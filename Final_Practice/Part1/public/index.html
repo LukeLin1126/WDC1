@@ -28,12 +28,21 @@
         <el-date-picker
                 v-model="listQuery.date"
                 type="datetime"
-                placeholder="Select date and time">
+                placeholder="Select date and time"
+        >
         </el-date-picker>
         <el-input placeholder="rating" v-model="listQuery.rating" class="filter-item" style="width: 200px" ></el-input>
         <el-input placeholder="facilities" v-model="listQuery.facilities" class="filter-item" style="width: 200px" ></el-input>
 
         <el-button type="primary" round @click="getList">Search</el-button>
+        <el-select v-model="flag" placeholder="Search Mode" >
+            <el-option
+                    v-for="item in searchOptions"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
     </div>
 
 

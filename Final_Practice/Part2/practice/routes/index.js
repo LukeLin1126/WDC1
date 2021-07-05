@@ -118,6 +118,7 @@ router.post('/logout', function(req, res, next) {
 
 });
 
+
 /* Add Post. */
 router.post('/newPost', function(req, res, next) {
 

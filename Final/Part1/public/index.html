@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!--    customized css -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <!--    Axios and Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <!--    functional js -->
+    <script src="javascripts/index.js" defer></script>
+
+</head>
+<body>
+
+<div id="vue_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8 search_container">
+                <div class="input-group">
+
+                        <input v-for="(value,name) in postData" type="text" class="form-control" :placeholder="name" :aria-label="name" v-model="postData[name]">
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success" @click="getList
+">Search</button>
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li class="dropdown-item" v-for="item in search_flag" :key="item.display">
+                                <a class="dropdown-item" href="#" @click="post_flag=item.value">{{item.display}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <h2 style="padding : 50px;text-align : center">
+                    Result List , total result {{ total }}
+                </h2>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+    </div>
+
+
+
+    <table class="table m_table">
+        <thead>
+        <tr >
+            <th v-for="(value,name) in list[0]">{{name}}</th>
+        </tr>
+        </thead>
+        <tbody v-for="(item,index) in list">
+        <tr  v-bind:class="index % 2 === 0 ? list_element_style1 : 0">
+            <th v-for="(value,name) in list[0]" scope="row">{{item[name]}}</th>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
