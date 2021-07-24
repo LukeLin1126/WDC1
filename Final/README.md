@@ -402,7 +402,7 @@ Identify the validation errors and in terms of those specific errors discuss the
 
 
 ```sql
-vnu --also-check-css $(find ./ | grep -v 'node_modules' | egrep '.html|.css' | sed -r 's/\\/\\//\\//g')
+vnu --also-check-css $(find ./ | grep -v 'node_modules' | egrep '.html|.css' | sed -r 's/\/\//\//g') 
 
 "file:/Users/akide/IdeaProjects/WDC/Final/exam_part2/./public/index.html":30.13-30.18: error: End tag “div” seen, but there were open elements.
 "file:/Users/akide/IdeaProjects/WDC/Final/exam_part2/./public/index.html":27.17-27.20: error: Unclosed element “h2”.
