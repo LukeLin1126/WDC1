@@ -436,7 +436,7 @@ Identify the linting errors and in terms of those specific errors discuss the ro
 
 
 ```sql
-eslint $(find ./ -name '*.js'| grep -v 'node_modules' | sed -r 's/\\/\\//\\//g')
+eslint $(find ./ -name '*.js'| grep -v 'node_modules' | sed -r 's/\/\//\//g')
 
 /home/ubuntu/final/exam_part2/routes/index.js
   12:7   warning  Unexpected console statement    no-console
