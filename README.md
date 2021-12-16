@@ -22,3 +22,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
+
+
+## CAUTION : 
+
+## Author has NO responsibility for this repository
+
+## Any code/resources directly submit to either external or internal assessment systemes without innovation is at your own RISK and might lead to a breach [Academic Integrity Policy](https://www.adelaide.edu.au/policies/230/)
