@@ -2,6 +2,27 @@
 
 # Final Exam 2021 S1 WDC
 
+
+# Part 1
+
+You have been hired to design a web application for an online shop that sells video games.
+
+The system requires the following features:
+
+- Users can search the different video games available
+- Video games can be searched/filtered by:
+  - Genre/Category
+  - Platform (console/PC etc.)
+  - Features
+  - Price
+- Users can sign-up and log-in
+- Users can order video games
+- Users can view their order history
+
+ 
+
+Thinking about such a system, complete the following tasks:
+
 ## Task 1.1
 
 
