@@ -309,6 +309,10 @@ UNLOCK TABLES;
 
 ## Task 1.4
 
+Write a SQL query to retrieve the name and email address of all users who bought a given item in the last 90 days.
+
+You can assume the item's unique indentifying information is provided.
+
 8/10
 
 ```sql
