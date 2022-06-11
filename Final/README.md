@@ -413,6 +413,18 @@ Both of steam and my workaround, every button has been properly labeled and ever
 For display result, the steam do not have table head to point at the purpose of search results. My implementation have a table title to classify the purpose of research results which makes user's more easily to understand the search results.
 
 
+# Part 2
+
+Download [THIS ZIP FILE](https://adelaide.mobius.cloud/web/Web26000/Public_Html/WDC_MAIN/exam_part2.zip) containing an express web application.
+
+- This web application is for the online Q&A site that we developed throughout the semester.
+- To run it, you will need to:
+  1. Unzip its contents.
+  2. Use `npm install` to install its modules.
+  3. Start a MySQL server.
+  4. Run `npm start` .
+- It has 2 user accounts, `alice` & `bob` both using the password `password`.
+
 
 ## Task 2.1
 
